@@ -4,6 +4,9 @@ const { expressMiddleware } = require("@apollo/server/express4");
 const cors = require("cors");
 const schema = require("./schema");
 const resolvers = require("./resolver");
+const dotenv = require("dotenv");
+dotenv.config();
+const port = process.env.PORT || 5000;
 async function startServer() {
     const app = express();
 
@@ -17,8 +20,8 @@ async function startServer() {
 
     app.use("/graphql", expressMiddleware(server));
 
-    app.listen(8000, () => {
-        console.log("Server is running on port 8000");
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
     });
 }
 
